@@ -36,7 +36,7 @@ set(CONFIG_DIR ${CMAKE_SOURCE_DIR}/config)
 
 set(SOURCES
     ${SOURCES_DIR}/main.cpp
-    ${SOURCES_DIR}/thread/Thread.cpp
+    ${SOURCES_DIR}/thread/ThreadPool.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

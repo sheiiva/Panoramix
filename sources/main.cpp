@@ -8,35 +8,28 @@
 ** Copyright 2023, Corentin COUTRET-ROZET
 */
 
-#include <iostream>
+#include "ThreadPool.hpp"
 
-#include "Thread.hpp"
-
-void f(char *arg)
+void my_function(int param)
 {
-    std::cout << std::string(arg) << std::endl;
+    // Do some work here
+    std::cout << "my_function executed with param " << param << std::endl;
 }
 
-int main(int ac, char **av)
+int main()
 {
-    Thread t(&f,"Hello world");
-    Thread t2(&f,"Hello world 2");
+    // Create a thread pool with 4 worker threads
+    ThreadPool pool(4);
 
-    t.join();
-    t2.join();
+    // Add some tasks to the thread pool
+    for (int i = 0; i < 10; ++i) {
+        pool.enqueue(my_function, i);
+    }
 
-    // try {
-    //     // Argument checking
-    //     ArgumentsHandler(ac, av);
-    //     // Launch system
-    //     nts::System system(av[1]);
+    // Wait for all tasks to complete
+    // This is not strictly necessary, but it ensures that the program
+    // doesn't exit before all tasks have completed
+    pool.wait();
 
-    //     system.run();
-    // } catch (const nts::Usage &e) {
-    //     std::cout << e.what() << std::endl;
-    // } catch (const std::exception& e) {
-    //     std::cerr << "Error: " << std::string(e.what()) << std::endl;
-    //     return 84;
-    // }
     return 0;
 }
