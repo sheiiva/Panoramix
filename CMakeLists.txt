@@ -36,6 +36,7 @@ set(CONFIG_DIR ${CMAKE_SOURCE_DIR}/config)
 
 set(SOURCES
     ${SOURCES_DIR}/main.cpp
+    ${SOURCES_DIR}/arguments/ArgumentChecker.cpp
     ${SOURCES_DIR}/thread/ThreadPool.cpp
 )
 
@@ -43,6 +44,8 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_include_directories(${PROJECT_NAME}
     PRIVATE
+        ${INCLUDE_DIR}/arguments
+        ${INCLUDE_DIR}/arguments/Usage
         ${INCLUDE_DIR}/thread
     )
 

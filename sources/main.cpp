@@ -8,32 +8,22 @@
 ** Copyright 2023, Corentin COUTRET-ROZET
 */
 
-#include "ThreadPool.hpp"
+#include "ArgumentChecker.hpp"
 
-std::mutex mutex;
-
-void my_function(int param)
+int main(int ac, char **av)
 {
-    std::lock_guard<std::mutex> lock(mutex);
+    try {
+        // Argument checking
+        panoramix::ArgumentChecker(ac, av);
+        // // Launch system
+        // panoramix::System system(av[1]);
 
-    // Do some work here
-    std::cout << "my_function executed with param " << param << std::endl;
-}
-
-int main()
-{
-    // Create a thread pool with 4 worker threads
-    ThreadPool pool(4);
-
-    // Add some tasks to the thread pool
-    for (int i = 0; i < 10; ++i) {
-        pool.enqueue(my_function, i);
+        // system.run();
+    } catch (const panoramix::Usage &e) {
+        std::cout << e.what() << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << std::string(e.what()) << std::endl;
+        return 84;
     }
-
-    // Wait for all tasks to complete
-    // This is not strictly necessary, but it ensures that the program
-    // doesn't exit before all tasks have completed
-    pool.wait();
-
     return 0;
 }
