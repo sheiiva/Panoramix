@@ -24,7 +24,7 @@ namespace panoramix
             return;
         // Refill the pot
         pot = pot_size;
-        //
+
         std::cout << "Druid: Ah! Yes, yes, I'm awake! Working on it!";
         std::cout << "Beware I can only make " << --_nb_refills << " more refills after this one." << std::endl;
     }

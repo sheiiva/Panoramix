@@ -9,6 +9,7 @@
 */
 
 #include "ArgumentChecker.hpp"
+#include "Core.hpp"
 
 int main(int ac, char **av)
 {
@@ -16,9 +17,9 @@ int main(int ac, char **av)
         // Argument checking
         panoramix::ArgumentChecker(ac, av);
         // // Launch system
-        // panoramix::System system(av[1]);
+        panoramix::Core core(std::stoi(av[1]), std::stoi(av[2]), std::stoi(av[3]), std::stoi(av[4]));
 
-        // system.run();
+        core.run();
     } catch (const panoramix::Usage &e) {
         std::cout << e.what() << std::endl;
     } catch (const std::exception& e) {

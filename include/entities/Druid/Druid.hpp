@@ -14,21 +14,26 @@
     #include <cstddef>
     #include <iostream>
 
-    class Druid
+    namespace panoramix 
     {
-        public:
-            Druid() noexcept;
-            Druid(Druid const& b) noexcept = default;
-            Druid(Druid&& b) noexcept = default;
-            ~Druid() noexcept;
-    
-            Druid& operator=(Druid const& rhs) noexcept = default;
-            Druid& operator=(Druid&& rhs) noexcept = default;
 
-            void refill(std::size_t const pot_size, std::size_t &pot);
+        class Druid
+        {
+            public:
+                Druid() noexcept;
+                Druid(Druid const& b) noexcept = default;
+                Druid(Druid&& b) noexcept = default;
+                ~Druid() noexcept;
+        
+                Druid& operator=(Druid const& rhs) noexcept = default;
+                Druid& operator=(Druid&& rhs) noexcept = default;
 
-        private:
-            std::size_t _nb_refills;
-    };
+                void refill(std::size_t const pot_size, std::size_t &pot);
+
+            private:
+                std::size_t _nb_refills;
+        };
+
+    }
 
 #endif /* !DRUID_HPP_ */
