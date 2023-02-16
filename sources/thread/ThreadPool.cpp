@@ -32,6 +32,7 @@ ThreadPool::ThreadPool(size_t nbThreads) :
                         }
                         task = std::move(_tasks.front());
                         _tasks.pop();
+                        _condition.notify_one();
                     }
                     task();
                 }

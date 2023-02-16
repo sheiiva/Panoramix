@@ -10,8 +10,12 @@
 
 #include "ThreadPool.hpp"
 
+std::mutex mutex;
+
 void my_function(int param)
 {
+    std::lock_guard<std::mutex> lock(mutex);
+
     // Do some work here
     std::cout << "my_function executed with param " << param << std::endl;
 }
