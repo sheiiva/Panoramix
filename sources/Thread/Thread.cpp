@@ -15,7 +15,7 @@ namespace panoramix
 
     void Thread::join()
     {
-        _thread.join();
+        thread_.join();
     }
 
 }

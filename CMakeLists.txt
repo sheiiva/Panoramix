@@ -35,9 +35,12 @@ set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 set(CONFIG_DIR ${CMAKE_SOURCE_DIR}/config)
 
 set(SOURCES
-    ${SOURCES_DIR}/main.cpp
     ${SOURCES_DIR}/arguments/ArgumentChecker.cpp
-    ${SOURCES_DIR}/thread/ThreadPool.cpp
+    ${SOURCES_DIR}/Core/Core.cpp
+    ${SOURCES_DIR}/entities/Druid/Druid.cpp
+    ${SOURCES_DIR}/entities/Villager/Villager.cpp
+    ${SOURCES_DIR}/Thread/Thread.cpp
+    ${SOURCES_DIR}/main.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
@@ -46,7 +49,11 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE
         ${INCLUDE_DIR}/arguments
         ${INCLUDE_DIR}/arguments/Usage
-        ${INCLUDE_DIR}/thread
+        ${INCLUDE_DIR}/Core
+        ${INCLUDE_DIR}/entities
+        ${INCLUDE_DIR}/entities/Druid
+        ${INCLUDE_DIR}/entities/Villager
+        ${INCLUDE_DIR}/Thread
     )
 
 target_link_libraries(

@@ -13,6 +13,10 @@
 
     #include <cstddef>
     #include <iostream>
+    #include <thread>
+    #include <mutex>
+    #include <condition_variable>
+    #include <thread>
 
     namespace panoramix
     {
@@ -20,23 +24,29 @@
         class Villager
         {
             public:
+                Villager(std::mutex &mutex, std::condition_variable &condition, std::size_t const id, std::size_t &pot, std::size_t const nb_fights_);
                 Villager() noexcept = delete;
-                Villager(std::size_t const &id, std::size_t const &nb_fights) noexcept;
-                Villager(Villager const& b) noexcept = default;
+                Villager(Villager const& b) noexcept = delete;
                 Villager(Villager&& b) noexcept = default;
-                ~Villager() noexcept;
+                ~Villager() noexcept = default;
         
-                Villager& operator=(Villager const& rhs) noexcept = default;
-                Villager& operator=(Villager&& rhs) noexcept = default;
+                Villager& operator=(Villager const& rhs) noexcept = delete;
+                Villager& operator=(Villager&& rhs) noexcept = delete;
 
-                void run(std::size_t &pot);
+                void join();
 
+            // private methods
+            private:
+                void awake(std::size_t &pot);
                 void drink(std::size_t &pot);
                 void fight();
 
             private:
-                std::size_t _id;
-                std::size_t _nb_fights;
+                const std::size_t       id_;
+                std::size_t             nb_fights_;
+                std::mutex              &mutex_;
+                std::condition_variable &condition_;
+                std::thread             thread_;
         };
 
     }

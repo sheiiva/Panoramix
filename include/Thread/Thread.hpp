@@ -20,17 +20,17 @@
         {
             public:
                 Thread() noexcept = default;
-                Thread(Thread const& b) noexcept = default;
+                Thread(Thread const& b) noexcept = delete;
                 Thread(Thread&& b) noexcept = default;
                 ~Thread() noexcept = default;
         
-                Thread& operator=(Thread const& rhs) noexcept = default;
-                Thread& operator=(Thread&& rhs) noexcept = default;
+                Thread& operator=(Thread const& rhs) noexcept = delete;
+                Thread& operator=(Thread&& rhs) noexcept = delete;
 
                 void join();
 
             private:
-                std::thread _thread;
+                std::thread thread_;
         };
 
     }

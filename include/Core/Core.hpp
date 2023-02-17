@@ -12,6 +12,7 @@
     #define CORE_HPP_
 
     #include <cstddef>
+    #include <vector>
 
     namespace panoramix
     {
@@ -20,21 +21,21 @@
             public:
                 Core() = delete;
                 Core(std::size_t, std::size_t, std::size_t, std::size_t);
-                Core(Core const& b) noexcept = default;
-                Core(Core&& b) noexcept = default;
+                Core(Core const& b) noexcept = delete;
+                Core(Core&& b) noexcept = delete;
                 ~Core() noexcept = default;
         
-                Core& operator=(Core const& rhs) noexcept = default;
-                Core& operator=(Core&& rhs) noexcept = default;
+                Core& operator=(Core const& rhs) noexcept = delete;
+                Core& operator=(Core&& rhs) noexcept = delete;
 
                 void run();
 
             private:
-                bool    _running;
-                size_t  _nb_villagers;
-                size_t  _pot_size;
-                size_t  _nb_fights;
-                size_t  _nb_refills;
+                std::size_t         pot_;
+                const std::size_t   nb_villagers_;
+                const std::size_t   pot_size_;
+                std::size_t         nb_fights_;
+                std::size_t         nb_refills_;
         };
     }
 
